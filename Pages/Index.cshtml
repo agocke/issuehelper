@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Build analysis issue helper</h1>
+    <p>This tool will help you file a known issue for a failing build.</p>
+</div>
+<div id="text-main" class="text-center">
+    <div class="main-area">
+        <h3>@ViewData["confirmation"]</h3>
+        <form id="main-form" method="post">
+            <label for="issue-url">Copy and paste your "Test Repository URL" here:</label><br>
+            <input type="url" id="issue-url" name="issueUrl" placeholder="Build URL" size="80" required><br>
+
+            <input type="submit" value="Start creating issue">
+        </form>
+    </div>
+</div>

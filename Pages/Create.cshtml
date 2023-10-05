@@ -1,0 +1,41 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create an issue";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Build analysis issue helper</h1>
+    <p>This tool will help you file a known issue for a failing build.</p>
+</div>
+<div id="text-main" class="text-center">
+    <div class="main-area">
+        <h3>@ViewData["confirmation"]</h3>
+        <form id="main-form" method="post">
+            <label for="build-url">Build URL:</label><br>
+            <input type="url" id="build-url" asp-for="BuildUrl" placeholder="Build URL" size="80" value=" @(Request.Query["buildUrl"]) " required><br>
+            <label for="build-name">Build error leg or test failing:</label><br>
+            <input type="text" id="build-name" name="build-name" placeholder="N/A" value="" size="80"><br>
+
+            <input type="checkbox" id="build-retry" name="build-retry" value="build-retry">
+            <label for="build-retry">Build retry</label><br>
+
+            <input type="checkbox" id="exclude-console" name="exclude-console" value="exclude-console">
+            <label for="exclude-console">Exclude console log</label><br>
+
+            <input id="regex-match" asp-for="RegexMatch">
+            <label for="regex-match">Regex match</label><br>
+
+            <br>
+            <label for="error-match-string">Error match substring or regex:</label><br>
+            <input type="text" id="error-match-string" asp-for="ErrorMatchString" placeholder="A substring or regex to match" size="80" value="" required><br>
+            <label for="sample-text">Sample text:</label><br>
+            <input type="text" id="sample-text" asp-for="SampleText" placeholder="Sample text from the build log" size="80" value=""><br>
+            <span style="color: red;">@ViewData["matchError"]</span><br>
+
+            <br>
+
+            <input type="submit" value="Draft new issue">
+        </form>
+    </div>
+</div>
